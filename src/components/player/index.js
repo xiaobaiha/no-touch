@@ -1,13 +1,17 @@
 import React from 'react';
 import videojs from 'video.js/core';
+import { initPlugin } from '../../lib/videojs-abplayer-comment/videojs_abplayer';
 import 'video.js/dist/video-js.css';
 
 class VideoPlayer extends React.Component {
   componentDidMount() {
     // instantiate Video.js
-    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-      console.log('onPlayerReady', this)
+    this.player = videojs(this.videoNode, this.props, () => {
+      initPlugin();
+      this.player.ABP();
+      this.player.danmu.load('https://raw.githubusercontent.com/Catofes/videojsABdm/a682f377b5a1594be45c41190b5cb00cd48906dc/demo/comment.xml')
     });
+    
   }
 
   // destroy player on unmount
