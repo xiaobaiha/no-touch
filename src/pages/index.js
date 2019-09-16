@@ -1,17 +1,24 @@
-import styles from './index.css';
-import { formatMessage } from 'umi-plugin-locale';
+// import styles from './index.css';
+// import { formatMessage } from 'umi-plugin-locale';
+import MlImage from './MlImage';
+import VideoPlayer from '../components/player/';
+
+// console.log({ml5})
 export default function() {
+  const videoOptions = {
+    autoplay: false,
+    controls: true,
+    width: 500,
+    height: 300,
+    sources: [{
+      src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
+      type: 'video/mp4'
+    }]
+  }
   return (
-    <div className={styles.normal}>
-      <div className={styles.welcome} />
-      <ul className={styles.list}>
-        <li>To get started, edit <code>src/pages/index.js</code> and save to reload.</li>
-        <li>
-          <a href="https://umijs.org/guide/getting-started.html">
-            {formatMessage({ id: 'index.start' })}
-          </a>
-        </li>
-      </ul>
+    <div>
+      <VideoPlayer {...videoOptions} />
+      {/* <MlImage /> */}
     </div>
   );
 }
